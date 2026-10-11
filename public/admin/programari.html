@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programari - UnidentArt Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-logo">Unident<span>Art</span></div>
+      
+      <nav class="sidebar-nav">
+        <a href="index.html" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          Dashboard
+        </a>
+        <a href="programari.html" class="sidebar-link active">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+          Programari
+        </a>
+        <a href="setari.html" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+          Servicii & Echipa
+        </a>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <a href="../index.html" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Inapoi la Site
+        </a>
+        <button onclick="logout()" class="sidebar-link" style="width: 100%; border: none; background: none; cursor: pointer; text-align: left;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+          Deconectare
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-content">
+      <h1 style="margin-bottom: 0.5rem;">Programari</h1>
+      <p style="color: var(--muted-foreground); margin-bottom: 2rem;">Gestioneaza toate programarile clinicii</p>
+
+      <!-- Filters -->
+      <div class="filters-bar">
+        <div class="search-input-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="search-input" class="form-input" placeholder="Cauta dupa nume sau telefon...">
+        </div>
+        <select id="status-filter" class="form-select" style="width: auto; min-width: 150px;">
+          <option value="all">Toate</option>
+          <option value="pending">In asteptare</option>
+          <option value="confirmed">Confirmate</option>
+          <option value="completed">Finalizate</option>
+          <option value="cancelled">Anulate</option>
+        </select>
+      </div>
+
+      <!-- Appointments Table -->
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h2 id="appointments-count">0 programari</h2>
+        </div>
+        <div class="admin-card-body" style="padding: 0;">
+          <div style="overflow-x: auto;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Pacient</th>
+                  <th>Telefon</th>
+                  <th>Doctor</th>
+                  <th>Serviciu</th>
+                  <th>Data/Ora</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actiuni</th>
+                </tr>
+              </thead>
+              <tbody id="appointments-table">
+                <!-- Will be populated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+          <div id="no-appointments" class="hidden" style="text-align: center; padding: 2rem; color: var(--muted-foreground);">
+            Nu exista programari care sa corespunda criteriilor.
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Details Modal -->
+  <div class="modal" id="details-modal">
+    <div class="modal-overlay" onclick="closeModal()"></div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      <div class="modal-header">
+        <h3>Detalii Programare</h3>
+        <p>Informatii complete despre programare</p>
+      </div>
+      <div class="modal-body" id="modal-content">
+        <!-- Will be populated by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/store.js"></script>
+  <script src="../js/main.js"></script>
+  <script>
+    // Check authentication
+    if (!store.isAdminAuthenticated) {
+      window.location.href = 'login.html';
+    }
+
+    function logout() {
+      store.logoutAdmin();
+      window.location.href = 'login.html';
+    }
+
+    let currentFilter = 'all';
+    let searchQuery = '';
+
+    function renderAppointments() {
+      const filtered = store.appointments
+        .filter(apt => currentFilter === 'all' || apt.status === currentFilter)
+        .filter(apt => {
+          if (!searchQuery) return true;
+          const query = searchQuery.toLowerCase();
+          return apt.firstName.toLowerCase().includes(query) ||
+                 apt.lastName.toLowerCase().includes(query) ||
+                 apt.phone.includes(searchQuery);
+        })
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+      const table = document.getElementById('appointments-table');
+      const noAppointments = document.getElementById('no-appointments');
+      const countEl = document.getElementById('appointments-count');
+
+      countEl.textContent = `${filtered.length} programari`;
+
+      if (filtered.length === 0) {
+        table.innerHTML = '';
+        noAppointments.classList.remove('hidden');
+        return;
+      }
+
+      noAppointments.classList.add('hidden');
+      table.innerHTML = filtered.map(apt => {
+        const doctor = store.getDoctorById(apt.doctorId);
+        const service = store.getServiceById(apt.serviceId);
+        return `
+          <tr>
+            <td style="font-weight: 500;">${apt.lastName} ${apt.firstName}</td>
+            <td>${apt.phone}</td>
+            <td>${doctor?.name || '-'}</td>
+            <td>${service?.name || '-'}</td>
+            <td>${apt.date} la ${apt.time}</td>
+            <td>
+              <select onchange="updateStatus('${apt.id}', this.value)" class="status-select status-${apt.status}">
+                <option value="pending" ${apt.status === 'pending' ? 'selected' : ''}>In asteptare</option>
+                <option value="confirmed" ${apt.status === 'confirmed' ? 'selected' : ''}>Confirmata</option>
+                <option value="completed" ${apt.status === 'completed' ? 'selected' : ''}>Finalizata</option>
+                <option value="cancelled" ${apt.status === 'cancelled' ? 'selected' : ''}>Anulata</option>
+              </select>
+            </td>
+            <td style="text-align: right;">
+              <button class="action-btn" onclick="viewDetails('${apt.id}')" title="Vezi detalii">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+              <button class="action-btn delete" onclick="deleteAppointment('${apt.id}')" title="Sterge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function updateStatus(id, status) {
+      store.updateAppointmentStatus(id, status);
+      renderAppointments();
+    }
+
+    function deleteAppointment(id) {
+      if (confirm('Esti sigur ca vrei sa stergi aceasta programare?')) {
+        store.deleteAppointment(id);
+        renderAppointments();
+      }
+    }
+
+    function viewDetails(id) {
+      const apt = store.appointments.find(a => a.id === id);
+      if (!apt) return;
+
+      const doctor = store.getDoctorById(apt.doctorId);
+      const service = store.getServiceById(apt.serviceId);
+
+      document.getElementById('modal-content').innerHTML = `
+        <div class="detail-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <div>
+            <p>Pacient</p>
+            <strong>${apt.lastName} ${apt.firstName}</strong>
+          </div>
+        </div>
+        <div class="detail-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <div>
+            <p>Telefon</p>
+            <strong>${apt.phone}</strong>
+          </div>
+        </div>
+        <div class="detail-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+          <div>
+            <p>Data si Ora</p>
+            <strong>${apt.date} la ${apt.time}</strong>
+          </div>
+        </div>
+        <div class="detail-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>
+          <div>
+            <p>Doctor</p>
+            <strong>${doctor?.name || '-'}</strong>
+          </div>
+        </div>
+        <div class="detail-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <div>
+            <p>Serviciu</p>
+            <strong>${service?.name || '-'}</strong>
+          </div>
+        </div>
+        ${apt.message ? `
+          <div class="detail-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <div>
+              <p>Mesaj</p>
+              <strong>${apt.message}</strong>
+            </div>
+          </div>
+        ` : ''}
+        <div class="detail-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <div>
+            <p>Status</p>
+            <span class="status-badge status-${apt.status}" style="margin-top: 0.25rem;">${getStatusText(apt.status)}</span>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('details-modal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('details-modal').classList.remove('active');
+    }
+
+    // Event listeners
+    document.getElementById('search-input').addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      renderAppointments();
+    });
+
+    document.getElementById('status-filter').addEventListener('change', (e) => {
+      currentFilter = e.target.value;
+      renderAppointments();
+    });
+
+    // Initial render
+    renderAppointments();
+  </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(which npm *)",
+      "Read(//usr/local/bin/**)",
+      "Bash(grep -n \"npm\\\\|nvm\\\\|node\\\\|NVM\" ~/.zshrc 2>/dev/null | head -20 || echo \"~/.zshrc not found or no matches\")",
+      "Read(//Users/irina/**)"
+    ]
+  }
+}

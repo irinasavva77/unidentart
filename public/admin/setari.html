@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servicii & Echipa - UnidentArt Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-logo">Unident<span>Art</span></div>
+      
+      <nav class="sidebar-nav">
+        <a href="index.html" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          Dashboard
+        </a>
+        <a href="programari.html" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+          Programari
+        </a>
+        <a href="setari.html" class="sidebar-link active">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+          Servicii & Echipa
+        </a>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <a href="../index.html" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Inapoi la Site
+        </a>
+        <button onclick="logout()" class="sidebar-link" style="width: 100%; border: none; background: none; cursor: pointer; text-align: left;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+          Deconectare
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-content">
+      <h1 style="margin-bottom: 0.5rem;">Servicii & Echipa</h1>
+      <p style="color: var(--muted-foreground); margin-bottom: 2rem;">Gestioneaza serviciile si echipa clinicii</p>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('doctors')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Echipa (<span id="doctors-count">0</span>)
+        </button>
+        <button class="tab-btn" onclick="switchTab('services')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>
+          Servicii (<span id="services-count">0</span>)
+        </button>
+      </div>
+
+      <!-- Doctors Tab -->
+      <div class="tab-content active" id="doctors-tab">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+          <h2>Doctori</h2>
+          <button class="btn btn-secondary" onclick="openDoctorModal()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            Adauga Doctor
+          </button>
+        </div>
+        <div class="grid-2" id="doctors-grid">
+          <!-- Will be populated by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Services Tab -->
+      <div class="tab-content" id="services-tab">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+          <h2>Servicii</h2>
+          <button class="btn btn-secondary" onclick="openServiceModal()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            Adauga Serviciu
+          </button>
+        </div>
+        <div class="grid-3" id="services-grid">
+          <!-- Will be populated by JavaScript -->
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Doctor Modal -->
+  <div class="modal" id="doctor-modal">
+    <div class="modal-overlay" onclick="closeDoctorModal()"></div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeDoctorModal()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      <div class="modal-header">
+        <h3 id="doctor-modal-title">Adauga Doctor</h3>
+        <p id="doctor-modal-subtitle">Completeaza datele pentru noul doctor</p>
+      </div>
+      <div class="modal-body">
+        <form id="doctor-form">
+          <input type="hidden" id="doctor-id">
+          <div class="form-group">
+            <label class="form-label">Nume Complet</label>
+            <input type="text" id="doctor-name" class="form-input" placeholder="Dr. Ion Popescu" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Specializare</label>
+            <input type="text" id="doctor-specialty" class="form-input" placeholder="Stomatologie Generala" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Descriere</label>
+            <textarea id="doctor-description" class="form-textarea" placeholder="Descrierea experientei si specializarii..." rows="3"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeDoctorModal()">Anuleaza</button>
+        <button class="btn btn-secondary" onclick="saveDoctor()">Salveaza</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Service Modal -->
+  <div class="modal" id="service-modal">
+    <div class="modal-overlay" onclick="closeServiceModal()"></div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeServiceModal()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      <div class="modal-header">
+        <h3 id="service-modal-title">Adauga Serviciu</h3>
+        <p id="service-modal-subtitle">Completeaza datele pentru noul serviciu</p>
+      </div>
+      <div class="modal-body">
+        <form id="service-form">
+          <input type="hidden" id="service-id">
+          <div class="form-group">
+            <label class="form-label">Nume Serviciu</label>
+            <input type="text" id="service-name" class="form-input" placeholder="Consultatie" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Descriere</label>
+            <textarea id="service-description" class="form-textarea" placeholder="Descrierea serviciului..." rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Durata</label>
+            <input type="text" id="service-duration" class="form-input" placeholder="30 min">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeServiceModal()">Anuleaza</button>
+        <button class="btn btn-secondary" onclick="saveService()">Salveaza</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/store.js"></script>
+  <script src="../js/main.js"></script>
+  <script>
+    // Check authentication
+    if (!store.isAdminAuthenticated) {
+      window.location.href = 'login.html';
+    }
+
+    function logout() {
+      store.logoutAdmin();
+      window.location.href = 'login.html';
+    }
+
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      
+      document.querySelector(`[onclick="switchTab('${tab}')"]`).classList.add('active');
+      document.getElementById(`${tab}-tab`).classList.add('active');
+    }
+
+    function renderDoctors() {
+      const grid = document.getElementById('doctors-grid');
+      document.getElementById('doctors-count').textContent = store.doctors.length;
+      
+      grid.innerHTML = store.doctors.map(doctor => {
+        const initial = doctor.name.split(' ')[1]?.[0] || doctor.name[0];
+        return `
+          <div class="item-card">
+            <div class="item-avatar">
+              <span>${initial}</span>
+            </div>
+            <div class="item-info">
+              <h4>${doctor.name}</h4>
+              <p class="subtitle">${doctor.specialty}</p>
+              <p class="description">${doctor.description}</p>
+            </div>
+            <div class="item-actions">
+              <button class="action-btn" onclick="editDoctor('${doctor.id}')" title="Editeaza">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+              </button>
+              <button class="action-btn delete" onclick="deleteDoctor('${doctor.id}')" title="Sterge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderServices() {
+      const grid = document.getElementById('services-grid');
+      document.getElementById('services-count').textContent = store.services.length;
+      
+      grid.innerHTML = store.services.map(service => `
+        <div class="item-card" style="flex-direction: column;">
+          <div style="display: flex; justify-content: space-between; width: 100%;">
+            <div>
+              <h4>${service.name}</h4>
+              <p class="description" style="margin-top: 0.5rem;">${service.description}</p>
+              <p style="font-size: 0.875rem; color: var(--muted-foreground); margin-top: 0.5rem;">${service.duration}</p>
+            </div>
+            <div class="item-actions">
+              <button class="action-btn" onclick="editService('${service.id}')" title="Editeaza">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+              </button>
+              <button class="action-btn delete" onclick="deleteService('${service.id}')" title="Sterge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Doctor Modal Functions
+    function openDoctorModal(doctor = null) {
+      document.getElementById('doctor-modal-title').textContent = doctor ? 'Editeaza Doctor' : 'Adauga Doctor';
+      document.getElementById('doctor-modal-subtitle').textContent = doctor ? 'Modifica informatiile doctorului' : 'Completeaza datele pentru noul doctor';
+      
+      document.getElementById('doctor-id').value = doctor?.id || '';
+      document.getElementById('doctor-name').value = doctor?.name || '';
+      document.getElementById('doctor-specialty').value = doctor?.specialty || '';
+      document.getElementById('doctor-description').value = doctor?.description || '';
+      
+      document.getElementById('doctor-modal').classList.add('active');
+    }
+
+    function closeDoctorModal() {
+      document.getElementById('doctor-modal').classList.remove('active');
+      document.getElementById('doctor-form').reset();
+    }
+
+    function editDoctor(id) {
+      const doctor = store.getDoctorById(id);
+      if (doctor) openDoctorModal(doctor);
+    }
+
+    function saveDoctor() {
+      const id = document.getElementById('doctor-id').value;
+      const data = {
+        name: document.getElementById('doctor-name').value,
+        specialty: document.getElementById('doctor-specialty').value,
+        description: document.getElementById('doctor-description').value,
+        image: ''
+      };
+
+      if (id) {
+        store.updateDoctor(id, data);
+      } else {
+        store.addDoctor(data);
+      }
+
+      closeDoctorModal();
+      renderDoctors();
+    }
+
+    function deleteDoctor(id) {
+      if (confirm('Esti sigur ca vrei sa stergi acest doctor?')) {
+        store.deleteDoctor(id);
+        renderDoctors();
+      }
+    }
+
+    // Service Modal Functions
+    function openServiceModal(service = null) {
+      document.getElementById('service-modal-title').textContent = service ? 'Editeaza Serviciu' : 'Adauga Serviciu';
+      document.getElementById('service-modal-subtitle').textContent = service ? 'Modifica informatiile serviciului' : 'Completeaza datele pentru noul serviciu';
+      
+      document.getElementById('service-id').value = service?.id || '';
+      document.getElementById('service-name').value = service?.name || '';
+      document.getElementById('service-description').value = service?.description || '';
+      document.getElementById('service-duration').value = service?.duration || '';
+      
+      document.getElementById('service-modal').classList.add('active');
+    }
+
+    function closeServiceModal() {
+      document.getElementById('service-modal').classList.remove('active');
+      document.getElementById('service-form').reset();
+    }
+
+    function editService(id) {
+      const service = store.getServiceById(id);
+      if (service) openServiceModal(service);
+    }
+
+    function saveService() {
+      const id = document.getElementById('service-id').value;
+      const data = {
+        name: document.getElementById('service-name').value,
+        description: document.getElementById('service-description').value,
+        duration: document.getElementById('service-duration').value,
+        icon: 'stethoscope'
+      };
+
+      if (id) {
+        store.updateService(id, data);
+      } else {
+        store.addService(data);
+      }
+
+      closeServiceModal();
+      renderServices();
+    }
+
+    function deleteService(id) {
+      if (confirm('Esti sigur ca vrei sa stergi acest serviciu?')) {
+        store.deleteService(id);
+        renderServices();
+      }
+    }
+
+    // Initial render
+    renderDoctors();
+    renderServices();
+  </script>
+</body>
+</html>
